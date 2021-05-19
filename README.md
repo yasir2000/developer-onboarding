@@ -4,9 +4,9 @@
 
 > -- [Christopher S. Penn](http://www.christopherspenn.com/)
 
-Companies struggle to keep everyone on the same page. People are hyper-connected in the moment but still don't know what's happening across the company. Employees and investors, co-founders and execs, customers and community, they all want more transparency. The solution is surprisingly simple and effective - great company updates that build transparency and alignment.
+Companies struggle to keep everyone on the same page. People are hyper-connected in the moment but still don't know what's happening across the TMO Project. Employees and investors, co-founders and execs, customers and community, they all want more transparency. The solution is surprisingly simple and effective - great TMO Project updates that build transparency and alignment.
 
-With that in mind we designed the [Carrot](https://carrot.io/) software-as-a-service application, powered by the open source [OpenCompany platform](https://github.com/open-company). The product design is based on three principles:
+With that in mind we designed the [Carrot](https://carrot.io/) software-as-a-service application, powered by the open source [Prometplatform](https://github.com/open-TMO Project). The product design is based on three principles:
 
 1. It has to be easy or no one will play.
 2. The "big picture" should always be visible.
@@ -14,23 +14,31 @@ With that in mind we designed the [Carrot](https://carrot.io/) software-as-a-ser
 
 Carrot simplifies how key business information is shared with stakeholders to create alignment. When information about growth, finances, ownership and challenges is shared transparently, it inspires trust, new ideas and new levels of stakeholder engagement. Carrot makes it easy for founders to engage with employees and investors, creating alignment for everyone.
 
-[Carrot](https://carrot.io/) is GitHub for the rest of your company.
+[Carrot](https://carrot.io/) is GitHub for the rest of your TMO Project.
 
 Transparency expectations are changing. Organizations need to change as well if they are going to attract and retain savvy employees and investors. Just as open source changed the way we build software, transparency changes how we build successful companies with information that is open, interactive, and always accessible. Carrot turns transparency into a competitive advantage.
 
 To get started, head to: [Carrot](https://carrot.io/)
 
-Information for new OpenCompany platform developers:
+Information for new Prometplatform developers:
 
-* [Technical Values](#technical-values)
-* [Technical Priorities](#technical-priorities)
-* [Process Priorities](#process-priorities)
-* [Architectural Priorities](#architectural-priorities)
-* [System Architecture](#system-architecture)
-* [Coding Guidelines](#coding-guidelines)
-* [Tools](#tools)
-* [Code of Conduct](#code-of-conduct)
-* [License](#license)
+- [Developer Onboarding](#developer-onboarding)
+  - [Technical Values](#technical-values)
+  - [Technical Priorities](#technical-priorities)
+  - [Process Priorities](#process-priorities)
+  - [Architectural Priorities](#architectural-priorities)
+  - [System Architecture](#system-architecture)
+    - [Quick Glossary](#quick-glossary)
+  - [Coding Guidelines](#coding-guidelines)
+    - [Pull Request Process](#pull-request-process)
+  - [Tools](#tools)
+    - [Clojure](#clojure)
+    - [ClojureScript](#clojurescript)
+    - [Rum](#rum)
+    - [RethinkDB](#rethinkdb)
+    - [Elasticsearch](#elasticsearch)
+  - [Code of Conduct](#code-of-conduct)
+  - [License](#license)
 
 
 ## Technical Values
@@ -98,18 +106,18 @@ If the job is general purpose utility computing with no language feature or libr
 
 ## System Architecture
 
-OpenCompany uses a distributed microservices architecture. Many services provide access to themselves via HTTPS and/or
+Prometuses a distributed microservices architecture. Many services provide access to themselves via HTTPS and/or
 WSS APIs. Others provide their services through the SQS queuing service. A key linchpin is JWToken authentication
 tokens which are used to provide cross-service authentication and user state. A typical use of the service is through
-the OpenCompany web client.
+the Prometweb client.
 
-![System Diagram](https://cdn.rawgit.com/open-company/developer-onboarding/master/OC-System.svg)
+![System Diagram](https://cdn.rawgit.com/open-TMO Project/developer-onboarding/master/OC-System.svg)
 
 ### Quick Glossary
 
-[Auth RethinkDB](https://github.com/open-company/open-company-auth#technical-design) - RethinkDB data store of users
+[Auth RethinkDB](https://github.com/open-TMO Project/open-TMO Project-auth#technical-design) - RethinkDB data store of users
 
-[Auth Service](https://github.com/open-company/open-company-auth) - Authentication microservice, handles user authentication, Slack single sign-on, and JWToken generation (HTTPS)
+[Auth Service](https://github.com/open-TMO Project/open-TMO Project-auth) - Authentication microservice, handles user authentication, Slack single sign-on, and JWToken generation (HTTPS)
 
 [AWS CloudFront](https://aws.amazon.com/cloudfront/) - Content delivery network
 
@@ -119,37 +127,37 @@ the OpenCompany web client.
 
 AWS SNS/SQS - [Simple Notification Service](https://aws.amazon.com/sns/) and [Simple Queuing Service](https://aws.amazon.com/sqs/)
 
-[Bot Service](https://github.com/open-company/open-company-bot) - Slack bot microservice, handles Slack integration other than single sign-on (HTTPS/SQS)
+[Bot Service](https://github.com/open-TMO Project/open-TMO Project-bot) - Slack bot microservice, handles Slack integration other than single sign-on (HTTPS/SQS)
 
-[Change DynamoDB](https://github.com/open-company/open-company-change#technical-design) - DynamoDB store of change and see events
+[Change DynamoDB](https://github.com/open-TMO Project/open-TMO Project-change#technical-design) - DynamoDB store of change and see events
 
-[Change Service](https://github.com/open-company/open-company-change) - Change tracking microservice, handles read/unread state per user and async notifications of new content (WSS)
+[Change Service](https://github.com/open-TMO Project/open-TMO Project-change) - Change tracking microservice, handles read/unread state per user and async notifications of new content (WSS)
 
-[Notify Service](https://github.com/open-company/open-company-notify) - Service that handles general purpose notifications to users and notifications for mentions in comments and posts.
+[Notify Service](https://github.com/open-TMO Project/open-TMO Project-notify) - Service that handles general purpose notifications to users and notifications for mentions in comments and posts.
 
-[Reminder Service](https://github.com/open-company/open-company-reminder) - Service that supports scheduling reminders to users.
+[Reminder Service](https://github.com/open-TMO Project/open-TMO Project-reminder) - Service that supports scheduling reminders to users.
 
-[Email Service](https://github.com/open-company/open-company-email) - Microservice for outbound content and transactional emails (SQS)
+[Email Service](https://github.com/open-TMO Project/open-TMO Project-email) - Microservice for outbound content and transactional emails (SQS)
 
 [FileStack](https://www.filestack.com/) - File upload as a service
 
 [Google Sheets](https://www.google.com/sheets/about/) - Spreadsheets in the Google cloud
 
-[Interaction Service](https://github.com/open-company/open-company-interaction) - Engagement microservice, handles user engagement with reactions and comments (HTTPS, WSS)
+[Interaction Service](https://github.com/open-TMO Project/open-TMO Project-interaction) - Engagement microservice, handles user engagement with reactions and comments (HTTPS, WSS)
 
-[Proxy Service](https://github.com/open-company/open-company-proxy) - Charting microservice, handles extracting charts from Google Sheets (HTTPS)
+[Proxy Service](https://github.com/open-TMO Project/open-TMO Project-proxy) - Charting microservice, handles extracting charts from Google Sheets (HTTPS)
 
-[Search Service](https://github.com/open-company/open-company-search) - Microservice for searching and indexing carrot data. (SQS and Elastic Search)
+[Search Service](https://github.com/open-TMO Project/open-TMO Project-search) - Microservice for searching and indexing carrot data. (SQS and Elastic Search)
 
-[Slack Router](https://github.com/open-company/open-company-slack-router) - Microservice for receiving slack API events and publishing them to SNS.
+[Slack Router](https://github.com/open-TMO Project/open-TMO Project-slack-router) - Microservice for receiving slack API events and publishing them to SNS.
 
-[Slack](https://api.slack.com/) - Company chat application
+[Slack](https://api.slack.com/) - TMO Project chat application
 
-[Storage Service](https://github.com/open-company/open-company-storage) - Persistence microservice, handles information data management and access control (HTTPS)
+[Storage Service](https://github.com/open-TMO Project/open-TMO Project-storage) - Persistence microservice, handles information data management and access control (HTTPS)
 
-[Storage RethinkDB](https://github.com/open-company/open-company-storage#technical-design) - RethinkDB data store of user content
+[Storage RethinkDB](https://github.com/open-TMO Project/open-TMO Project-storage#technical-design) - RethinkDB data store of user content
 
-[Web UI](https://github.com/open-company/open-company-web) - ClojureScript/React mobile and desktop web client
+[Web UI](https://github.com/open-TMO Project/open-TMO Project-web) - ClojureScript/React mobile and desktop web client
 
 
 ## Coding Guidelines
@@ -285,11 +293,11 @@ Libraries:
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/open-company/developer-onboarding/blob/master/CODE-OF-CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/open-TMO Project/developer-onboarding/blob/master/CODE-OF-CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 
 ## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Developer Onboarding</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://carrot.io/" property="cc:attributionName" rel="cc:attributionURL">OpenCompany, LLC.</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Developer Onboarding</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://carrot.io/" property="cc:attributionName" rel="cc:attributionURL">OpenTMO Project, LLC.</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-Copyright © 2015-2020 OpenCompany, LLC
+Copyright © 2015-2020 OpenTMO Project, LLC
